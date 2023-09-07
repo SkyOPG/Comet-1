@@ -1,4 +1,4 @@
-import { Collection } from 'discord.js';
+import {Collection} from 'discord.js';
 import ping from './ping.js';
 import cookie from './cookie.js';
 import antispam from './antiSpam.js';
@@ -13,37 +13,37 @@ import snake from './snake.js';
 import profile from './profile.js';
 import server from './server.js';
 import about from './about.js';
+import embed from './embed.js';
 
-const arr: object[] = [
-    ping,
-    cookie,
-    antispam,
-    bal,
-    ball,
-    bot,
-    evalcmd,
-    filecmd,
-    help,
-    snake,
-    hangman,
-    profile,
-    server,
-    about
-]
+const arr: Array<Record<string, unknown>> = [
+	ping,
+	cookie,
+	antispam,
+	bal,
+	ball,
+	bot,
+	evalcmd,
+	filecmd,
+	help,
+	snake,
+	hangman,
+	profile,
+	server,
+	about,
+	embed,
+];
 
 const file: any = {
-    commands: new Collection(),
-    aliases: new Collection(),
-    cooldowns: new Collection()
-} 
-
+	commands: new Collection(),
+	aliases: new Collection(),
+	cooldowns: new Collection(),
+};
 
 arr.forEach((val: any) => {
-    file.commands.set(val.name, val);
-    val.aliases.forEach((element: any) => {
-        file.aliases.set(element, val)
-    });
+	(file.commands as Collection<unknown, unknown>).set(val.name, val);
+	(val.aliases as string[]).forEach((element: any) => {
+		(file.aliases as Collection<unknown, unknown>).set(element, val);
+	});
 });
-
 
 export default file;

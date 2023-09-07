@@ -11,28 +11,21 @@ export default {
         
         const { guild } = message;
         const user: ClientUser = client.user as ClientUser;
-        const rule: AutoModerationRule = await guild.autoModerationRules.create(
-            {
+        const rule: AutoModerationRule = await guild.autoModerationRules.create({
                 name: `Prevent Spam messages by ${user.username}`,
                 enabled: true,
                 eventType: 1,
                 triggerType: 3,
-                triggerMetadata:
-                {
-
-                },
-                actions: [
-                    {
+                triggerMetadata:{},
+                actions: [{
                         type: 1,
                         metadata: {
                             channel: message.channel as GuildTextChannelResolvable | ThreadChannel<boolean> | undefined,
                             durationSeconds: 10,
                             customMessage: `This message was prevented by ${client.user?.username} moderation`
                         }
-                    }
-                ]
-
-            }).catch(async err => {
+                    }]
+    }).catch(async err => {
                  await message.reply("your automod rule already exists!"); 
                 }) as AutoModerationRule;
 

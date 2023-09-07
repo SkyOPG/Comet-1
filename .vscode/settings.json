@@ -1,3 +1,8 @@
 {
-    "C_Cpp.errorSquiggles": "disabled"
+	"editor.rulers": [
+		120
+	],
+	"workbench.colorCustomizations": {
+		"editorRuler.foreground": "#1F1F1F"
+	}
 }
