@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.41",
+    "@types/body-parser": "^1.19.2",
     "@types/cookie-parser": "^1.4.4",
     "@types/express": "^4.17.17",
     "@types/mongoose": "^5.11.97",
@@ -44,6 +45,7 @@
     "meta-discord": "^0.0.2",
     "moment-duration-format": "^2.3.2",
     "mongoose": "^6.0.2",
+    "namemc": "^1.8.16",
     "simply-djs": "^4.1.0"
   }
 }

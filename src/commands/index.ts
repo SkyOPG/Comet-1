@@ -1,4 +1,5 @@
 import {Collection} from 'discord.js';
+import type {commandType} from '../utils/types.js';
 import ping from './ping.js';
 import cookie from './cookie.js';
 import antispam from './antiSpam.js';
@@ -14,6 +15,9 @@ import profile from './profile.js';
 import server from './server.js';
 import about from './about.js';
 import embed from './embed.js';
+import counting from './counting.js';
+import username from './username.js';
+import mcserver from './mcserver.js';
 
 const arr: Array<Record<string, unknown>> = [
 	ping,
@@ -31,9 +35,16 @@ const arr: Array<Record<string, unknown>> = [
 	server,
 	about,
 	embed,
+	counting,
+	username,
+	mcserver,
 ];
 
-const file: any = {
+const file: {
+	commands: Collection<string, commandType>;
+	aliases: Collection<string, unknown>;
+	cooldowns: Collection<string, unknown>;
+} = {
 	commands: new Collection(),
 	aliases: new Collection(),
 	cooldowns: new Collection(),

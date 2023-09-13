@@ -3,8 +3,13 @@ import mongo from 'mongoose';
 const {model, Schema} = mongo;
 
 const a = new Schema({
-	User: String,
-	Badges: Array,
+	Guild: String,
+	Channel: String,
+	Number: String,
+	LastUser: String,
+	Options: {
+		Strict: Boolean,
+	},
 });
 
-export default model('badgeSchema', a);
+export default model('countSchema', a);
