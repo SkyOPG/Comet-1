@@ -10,7 +10,7 @@ export default {
 		const likes = await axios.get(`https://api.namemc.com/server/${args[0]}/likes`);
 		const status = await axios.get(`https://api.mcsrvstat.us/3/${args[0]}`);
 		const isOnline = await axios.get(`https://api.mcsrvstat.us/simple/${args[0]}`);
-		console.log({status, isOnline});
+
 		if (isOnline.status === 200) {
 			const buf = Buffer.from((status.data as {icon: string}).icon, 'base64');
 			const attachment = new AttachmentBuilder(buf, {name: 'index.png'});
