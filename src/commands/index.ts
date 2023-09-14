@@ -18,6 +18,11 @@ import embed from './embed.js';
 import counting from './counting.js';
 import username from './username.js';
 import mcserver from './mcserver.js';
+import rip from './rip.js';
+import gun from './gun.js';
+import jail from './jail.js';
+import hitler from './hitler.js';
+import coffee from './coffee.js';
 
 const arr: Array<Record<string, unknown>> = [
 	ping,
@@ -38,6 +43,11 @@ const arr: Array<Record<string, unknown>> = [
 	counting,
 	username,
 	mcserver,
+	rip,
+	gun,
+	jail,
+	hitler,
+	coffee
 ];
 
 const file: {

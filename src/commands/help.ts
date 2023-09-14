@@ -6,6 +6,8 @@ import {
 	ActionRowBuilder,
 	type Client,
 	type Message,
+	StringSelectMenuBuilder,
+	StringSelectMenuOptionBuilder,
 } from 'discord.js';
 import file from './index.js';
 
@@ -46,9 +48,41 @@ export default {
 					.setEmoji('📃')
 					.setStyle(ButtonStyle.Secondary),
 			);
+		const select = new ActionRowBuilder<StringSelectMenuBuilder>()
+		.addComponents(
+			new StringSelectMenuBuilder()
+			.setCustomId("cmdcats")
+			.setPlaceholder("🪐 - Choose a category")
+			.addOptions(
+				new StringSelectMenuOptionBuilder()
+				.setLabel("🏠 - Overview")
+				.setDescription("The homepage of this command")
+				.setValue("home"),
+				new StringSelectMenuOptionBuilder()
+				.setLabel("⚙️ - Config")
+				.setDescription("All the Bot's configuration commands are here")
+				.setValue("config"),
+				new StringSelectMenuOptionBuilder()
+				.setLabel("🏓 - Fun")
+				.setDescription("Fun commands go here")
+				.setValue("fun"),
+				new StringSelectMenuOptionBuilder()
+				.setLabel("⚒️ - Tools")
+				.setDescription("All different tools go here")
+				.setValue("tools"),
+				new StringSelectMenuOptionBuilder()
+				.setLabel("💲 - Economy")
+				.setDescription("Economy commands go here")
+				.setValue("economy"),
+				new StringSelectMenuOptionBuilder()
+				.setLabel("💻 - Developers")
+				.setDescription("Commands for developers interested in the comet API")
+				.setValue("developers")
+			)
+		)
 		const msg = await message.channel.send({
 			embeds: [ovr],
-			components: [row],
+			components: [select, row],
 		});
 		const collector = msg.createMessageComponentCollector({
 			filter: i => i.user && i.message.author.id === client.user.id,
@@ -64,13 +98,13 @@ export default {
 				switch (b.customId) {
 					case 'home':
 						// eslint-disable-next-line @typescript-eslint/no-empty-function
-						await msg.edit({embeds: [ovr], components: [row]}).catch(async d => {});
+						await msg.edit({embeds: [ovr], components: [select, row]}).catch(async d => {});
 						// eslint-disable-next-line @typescript-eslint/no-empty-function
 						b.deferUpdate().catch(d => {});
 						break;
 					case 'cmds':
 						// eslint-disable-next-line @typescript-eslint/no-empty-function
-						await msg.edit({embeds: [allCmds], components: [row]}).catch(async d => {});
+						await msg.edit({embeds: [allCmds], components: [select, row]}).catch(async d => {});
 						// eslint-disable-next-line @typescript-eslint/no-empty-function
 						b.deferUpdate().catch(async d => {});
 						break;

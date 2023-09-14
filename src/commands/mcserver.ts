@@ -40,7 +40,7 @@ export default {
 					},
 				)
 				.setColor('Blue');
-			await message.channel.send({
+			return await message.channel.send({
 				embeds: [
 					embed,
 				],
