@@ -1,28 +1,37 @@
 import {Collection} from 'discord.js';
 import type {commandType} from '../utils/types.js';
-import ping from './ping.js';
-import cookie from './cookie.js';
-import antispam from './antiSpam.js';
-import bal from './bal.js';
-import ball from './ball.js';
-import bot from './bot.js';
-import evalcmd from './eval.js';
-import filecmd from './file.js';
-import help from './help.js';
-import hangman from './hangman.js';
-import snake from './snake.js';
-import profile from './profile.js';
-import server from './server.js';
-import about from './about.js';
-import embed from './embed.js';
-import counting from './counting.js';
-import username from './username.js';
-import mcserver from './mcserver.js';
-import rip from './rip.js';
-import gun from './gun.js';
-import jail from './jail.js';
-import hitler from './hitler.js';
-import coffee from './coffee.js';
+// utility
+import ping from './utility/ping.js';
+import evalcmd from './utility/eval.js';
+import help from './utility/help.js';
+import about from './utility/about.js';
+// fun
+import cookie from './fun/cookie.js';
+import ball from './fun/ball.js';
+import hangman from './fun/hangman.js';
+import snake from './fun/snake.js';
+import rip from './fun/rip.js';
+import gun from './fun/gun.js';
+import jail from './fun/jail.js';
+import hitler from './fun/hitler.js';
+import coffee from './fun/coffee.js';
+// moderation
+import antispam from './moderation/antiSpam.js';
+import say from './moderation/say.js';
+// api
+// economy
+import bal from './economy/bal.js';
+// info
+import bot from './info/bot.js';
+import profile from './info/profile.js';
+import server from './info/server.js';
+import username from './info/username.js';
+import mcserver from './info/mcserver.js';
+// systems
+import filecmd from './systems/file.js';
+import embed from './systems/embed.js';
+import counting from './systems/counting.js';
+import tickets from './systems/tickets.js';
 
 const arr: Array<Record<string, unknown>> = [
 	ping,
@@ -47,7 +56,9 @@ const arr: Array<Record<string, unknown>> = [
 	gun,
 	jail,
 	hitler,
-	coffee
+	coffee,
+	say,
+	tickets
 ];
 
 const file: {
@@ -61,9 +72,9 @@ const file: {
 };
 
 arr.forEach((val: any) => {
-	(file.commands as Collection<unknown, unknown>).set(val.name, val);
-	(val.aliases as string[]).forEach((element: any) => {
-		(file.aliases as Collection<unknown, unknown>).set(element, val);
+	file.commands.set(val.name, val);
+	val.aliases.forEach((element: any) => {
+		file.aliases.set(element, val);
 	});
 });
 

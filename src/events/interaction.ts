@@ -9,7 +9,7 @@ export default event(Events.InteractionCreate, async ({ log }, interaction) => {
 			if(data){
 					data.FileData.Code = code;
                     await data.save();
-					await interaction.reply({ content: "Saved!" });
+					await interaction.reply({ content: "Saved!", ephemeral: true });
 			} else {
 				
 			await interaction.reply({ content: "error", ephemeral: true })

@@ -6,6 +6,7 @@ export const Keys = {
 	mongoURI: getEnvVar('MONGO'),
 	prefix: getEnvVar('PREFIX'),
 	secret: getEnvVar('SECRET'),
+	port: getEnvVar("PORT")
 } as const;
 
 export default Keys;

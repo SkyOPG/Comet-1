@@ -13,7 +13,10 @@ import fsch from '../utils/Schemas/files.js';
 const bcl: Client<true> = bl;
 
 // Dashboard
-router.get('/', (req, res) => {
+router.get("/", (_req: Request, res: Response) => {
+	res.status(200).redirect("/home");
+})
+router.get('/home', (req, res) => {
 	let url: string;
 	let logged: string;
 	if (req.cookies.auth) {
@@ -59,28 +62,32 @@ router.get('/guilds', (req: Request, res: Response) => {
 	res.render('guilds');
 });
 
-router.get('/invite', (req, res) => {
+router.get('/invite', (req: Request, res: Response) => {
 	res.render('invite');
 });
 
 // Guild editor, TODO: cookie checks
-router.get('/guilds/:guildId/edit', (req, res) => {
+router.get('/guilds/:guildId/edit', (req: Request, res: Response) => {
 	const {guildId} = req.params;
 	res.render('edit', {guildId});
 });
 
-router.get('/api/v1/files/:file', async (req, res) => {
+router.get("/api/:version/:endpoint", (req: Request, res: Response): void => {
+	const { version: ver, endpoint: enp } = req.params;
+	if(ver === "v1"){
+		switch(enp){
+			default: 
+				res.status(404).send("endpoint not found");
+			break;
+		}
+	} else {
+		res.status(404).send("Version \""+ver+"\" Not found");
+	}
+});
+
+router.get('/files/:file', async (req: Request, res: Response) => {
 	const {file} = req.params;
-	const data: {
-		Filename: string;
-		Owner: string;
-		Views: number;
-		Forks: number;
-		FileData: {
-			isPrivate: boolean;
-			Code: string;
-		};
-	} = (await fsch.model.findOne({Filename: file}) as unknown) as {
+	const data = (await fsch.model.findOne({Filename: file}) as unknown) as {
 		Filename: string;
 		Owner: string;
 		Views: number;
@@ -104,12 +111,12 @@ router.get('/api/v1/files/:file', async (req, res) => {
 	}
 });
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', (req: Request, res: Response) => {
 	console.log(`${req.cookies.auth}`);
 	res.status(200).redirect('/');
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', (req: Request, res: Response) => {
 	if (req.query.code) {
 		let token;
 		res.cookie('auth', req.query.code);

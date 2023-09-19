@@ -7,45 +7,32 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon --config nodemon.json src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "bare-start": "ts-node --esm src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.4.2",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
-    "eslint": "^8.48.0",
-    "eslint-config-xo": "^0.43.1",
-    "eslint-config-xo-typescript": "^1.0.1",
-    "nodemon": "^3.0.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
-  },
   "type": "module",
   "engines": {
-    "node": ">= 16.0.0"
+    "node": ">= 18.0.0"
   },
   "dependencies": {
-    "@napi-rs/canvas": "^0.1.41",
-    "@types/body-parser": "^1.19.2",
+    "@types/body-parser": "^1.19.3",
     "@types/cookie-parser": "^1.4.4",
     "@types/express": "^4.17.17",
-    "@types/mongoose": "^5.11.97",
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
-    "dbd-soft-ui": "^1.7.11-beta.1",
-    "discord-dashboard": "^2.3.62",
-    "discord-gamecord": "^4.4.0",
-    "discord-oauth2": "^2.11.0",
-    "discord.js": "^14.11.0",
+    "discord-gamecord": "^4.4.1",
+    "discord.js": "^14.13.0",
     "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
     "meta-discord": "^0.0.2",
-    "moment-duration-format": "^2.3.2",
-    "mongoose": "^6.0.2",
-    "namemc": "^1.8.16",
-    "simply-djs": "^4.1.0"
+    "mongoose": "6.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
   }
 }
